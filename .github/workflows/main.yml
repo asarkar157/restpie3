@@ -19,7 +19,7 @@ jobs:
         with:
           cloud: 'azure' # Specify the cloud provider
           language: 'Python' # Set the programming language
-          outputDir: '/iac' # Define the output directory
+          outputDir: './iac' # Define the output directory
           scanPath: '.' # Indicate the path to scan
           targetCompute: 'k8s' # Choose the target compute platform
           cleanup: 'true' # Cleanup after action
