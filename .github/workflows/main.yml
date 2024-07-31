@@ -20,6 +20,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
+          ref: ${{ github.head_ref || github.ref_name }}  # Check out the correct branch
           persist-credentials: true
           
       - name: Generate IaC
