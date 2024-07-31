@@ -3,7 +3,7 @@ name: AppCD IaC Generator
 on:
   push:
     branches:
-      - '**'
+      - master
     paths-ignore:
       - 'iac/**'  # Ignore changes in any file within the iac directory
   pull_request:
