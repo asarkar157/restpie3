@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: AppCD IaC Generator
 
 on:
   push:
