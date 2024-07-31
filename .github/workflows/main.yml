@@ -34,6 +34,11 @@ jobs:
           targetCompute: 'k8s' # Choose the target compute platform
           cleanup: 'true' # Cleanup after action
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
       - name: Commit and Push Changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token for authentication
