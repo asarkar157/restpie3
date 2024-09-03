@@ -40,7 +40,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-      - name: Commit and Push Changes
+      - name: Commit and Push Changes to IaC Repo
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token for authentication
         run: |
@@ -51,14 +51,30 @@ jobs:
             # Commit changes
             git commit -m "Auto-generated infra files by AppCD"
             
-            # Fetch the latest changes from the remote branch
-            git fetch origin ${{ github.ref_name }}
+            # Clone the iac repository
+            git clone https://github.com/your-organization/iac.git iac-repo
             
-            # Rebase the local changes on top of the fetched branch
-            git rebase origin/${{ github.ref_name }}
+            # Create the restpie3 subfolder if it doesn't exist
+            mkdir -p ./iac-repo/restpie3
             
-            # Push changes to the branch
-            git push origin HEAD:${{ github.ref_name }}
+            # Copy the generated files to the restpie3 subfolder in the iac repository
+            cp -R ./iac/* ./iac-repo/restpie3/
+            
+            # Change to the iac repository directory
+            cd iac-repo
+            
+            # Add all changes in the iac repository
+            git add .
+            
+            # Commit changes in the iac repository
+            git commit -m "Auto-generated infra files by AppCD for restpie3"
+            
+            # Push changes to the iac repository
+            git push https://${{ secrets.GITHUB_TOKEN }}@github.com/your-organization/iac.git HEAD:main
+            
+            # Clean up
+            cd ..
+            rm -rf iac-repo
           else
             echo "No changes to commit"
           fi
