@@ -42,7 +42,7 @@ jobs:
           
       - name: Commit and Push Changes to IaC Repo
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.APPCD_TOKEN }}
         run: |
           if [ -n "$(git status --porcelain)" ]; then
             git add .
