@@ -40,25 +40,37 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-      - name: Commit and Push Changes to IaC Repo
-        env:
-          GITHUB_TOKEN: ${{ secrets.APPCD_TOKEN }}
+      - name: Commit and Push Changes to Main Repo
         run: |
           if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
             git add .
             git commit -m "Auto-generated infra files by AppCD"
-            
-            # Clone the iac repository using the GITHUB_TOKEN
-            git clone https://${GITHUB_TOKEN}@github.com/asarkar157/iac.git iac-repo
-            
-            # Create the restpie3 subfolder if it doesn't exist
-            mkdir -p ./iac-repo/restpie3
-            
-            # Copy the generated files to the restpie3 subfolder in the iac repository
-            cp -R ./iac/* ./iac-repo/restpie3/
-            
-            # Change to the iac repository directory
-            cd iac-repo
+            git push
+          else
+            echo "No changes to commit in the main repository"
+          fi
+
+      - name: Clone and Update IaC Repo
+        env:
+          IAC_REPO_PAT: ${{ secrets.IAC_REPO_PAT }}
+        run: |
+          git clone https://${IAC_REPO_PAT}@github.com/asarkar157/iac.git iac-repo
+          
+          # Create the restpie3 subfolder if it doesn't exist
+          mkdir -p ./iac-repo/restpie3
+          
+          # Copy the generated files to the restpie3 subfolder in the iac repository
+          cp -R ./iac/* ./iac-repo/restpie3/
+          
+          # Change to the iac repository directory
+          cd iac-repo
+          
+          # Check if there are any changes
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
             
             # Add all changes in the iac repository
             git add .
@@ -66,12 +78,12 @@ jobs:
             # Commit changes in the iac repository
             git commit -m "Auto-generated infra files by AppCD for restpie3"
             
-            # Push changes to the iac repository using the GITHUB_TOKEN
-            git push https://${GITHUB_TOKEN}@github.com/asarkar157/iac.git HEAD:main
-            
-            # Clean up
-            cd ..
-            rm -rf iac-repo
+            # Push changes to the iac repository
+            git push https://${IAC_REPO_PAT}@github.com/asarkar157/iac.git HEAD:main
           else
-            echo "No changes to commit"
+            echo "No changes to commit in the IaC repository"
           fi
+          
+          # Clean up
+          cd ..
+          rm -rf iac-repo
