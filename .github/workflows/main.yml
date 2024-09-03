@@ -48,11 +48,16 @@ jobs:
           if [ -n "$(git status --porcelain)" ]; then
             # Add all changes
             git add .
-
             # Commit changes
             git commit -m "Auto-generated infra files by AppCD"
-
-            # Push changes to the main branch
+            
+            # Fetch the latest changes from the remote branch
+            git fetch origin ${{ github.ref_name }}
+            
+            # Rebase the local changes on top of the fetched branch
+            git rebase origin/${{ github.ref_name }}
+            
+            # Push changes to the branch
             git push origin HEAD:${{ github.ref_name }}
           else
             echo "No changes to commit"
