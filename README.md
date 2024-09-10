@@ -15,7 +15,7 @@ Update May 2023: Python and libraries updated, Python 3.11 into use. Still a fin
 
 Update March 2024: Ansible scripts for automatic install to cloud. 
 
-**Table of contents**
+**Table of contents***
 
 * [Features](#features)
 * [Building blocks](#building-blocks)
