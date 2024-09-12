@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: Generated helm chart created for service "azure rest server" with appcd
+name: azure rest server
+type: application
+version: 0.1.0

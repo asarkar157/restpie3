@@ -1,0 +1,12 @@
+{
+  "module": {
+    "appcd_2d68328d-e774-4ea4-b154-a657585c74d4": {
+      "custom_role_definitions": [],
+      "location": "${var.location}",
+      "name": "restpie3-role",
+      "resource_group_name": "${local.resource_group_name}",
+      "role_assignments": [],
+      "source": "./modules/azurerm_user_assigned_managed_identity"
+    }
+  }
+}

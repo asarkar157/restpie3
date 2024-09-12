@@ -1,0 +1,50 @@
+helm_hpa_4897574596524c3d83a81b1bade0983d:
+    enabled: true
+    max_replicas: 2
+    min_replicas: 1
+    name: restpie3
+    target_cpu_utilization_percentage: 50
+    target_memory_utilization_percentage: 50
+    workload_kind: ${module.appcd_e80385e9-a33f-5118-99e7-bcf528dd6d66.kind}
+    workload_name: ${module.appcd_e80385e9-a33f-5118-99e7-bcf528dd6d66.name}
+helm_ingress_6ae164cfa8fa4c458d0447d646b3d38b:
+    annotations:
+        kubernetes.io/ingress.allow-http: "false"
+    class_name: restpie3
+    default_backend_name: ${module.appcd_bd7a127e-66e8-5a50-9cbe-e5e39c6fb764.name}
+    default_backend_port: ${module.appcd_bd7a127e-66e8-5a50-9cbe-e5e39c6fb764.port}
+    labels:
+        service: myapp
+    name: restpie3
+    rules: []
+    tls: ""
+helm_service_4a4ab0b6ec3746c6a3c186c32a9e8e8d:
+    name: restpie3
+    port: 80
+    protocol: TCP
+    selector_labels: ${module.appcd_e80385e9-a33f-5118-99e7-bcf528dd6d66.labels}
+    target_port: ${module.appcd_e80385e9-a33f-5118-99e7-bcf528dd6d66.port}
+    type: ClusterIP
+helm_service_account_2fccbd13cd6244509f7438c3353a57b9:
+    annotations: {}
+    automount: false
+    labels: {}
+    name: restpie3
+helm_workload_ebfd73188e604832aef713cadc99e449:
+    env:
+        ENVBUILDMODE: ""
+        FLASK_ENV: ""
+    env_from_config: []
+    env_from_secret: []
+    image: ""
+    image_pull_policy: Always
+    image_pull_secret: null
+    image_tag: ""
+    kind: Deployment
+    labels:
+        service: myapp
+    name: restpie3
+    port: 80
+    protocol: TCP
+    replicas: 1
+    service_account: ${module.appcd_a885fa75-8099-5dd3-8525-635d12150012.name}
