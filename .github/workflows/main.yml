@@ -15,8 +15,11 @@ on:
 
 jobs:
   AppCD:
+    # Skip the job for PRs from branches starting with stackgen/
+    if: github.event_name != 'pull_request' || !startsWith(github.head_ref, 'stackgen/')
     runs-on: ubuntu-20.04
     steps:
+
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
