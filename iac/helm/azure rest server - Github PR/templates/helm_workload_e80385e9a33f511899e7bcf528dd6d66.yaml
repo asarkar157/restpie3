@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: {{ .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.kind }}
+metadata:
+  name: {{ .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.name }}
+  labels: 
+    {{- with .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.labels }}
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+spec:
+  replicas: {{ .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.replicas }}
+  
+  selector:
+    matchLabels:
+     {{- with .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.labels }}
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+  template:
+    metadata:
+      labels:
+        {{- with .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.labels }}
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    spec:
+      {{- if .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.service_account }}
+      serviceAccountName: {{ .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.service_account }}
+      {{- end }}
+      imagePullSecrets:
+        - name: {{ .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.image_pull_secret }}
+      volumes:
+        {{- range .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.volumes }}
+        - name: {{ .name }}
+          {{- if .secret  }}
+          secret:
+            secretName: {{ .secret }}
+          {{ else if .configmap }}
+          configMap:
+            name: {{ .configmap }}
+          {{- end }}
+        {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.image }}:{{ .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.image_tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.image_pull_policy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.port }}
+              protocol: {{ .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.protocol }}
+          env:
+          {{- with .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.env }}
+            {{ range $key, $value := . }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{ end }}
+          {{- end }}
+          envFrom:
+            {{- range .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.env_from_secret }}
+            - secretRef:
+                name: {{ . }}
+            {{- end }}
+            {{- range .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.env_from_config }}
+            - configMapRef:
+                name: {{ . }}
+            {{- end }}
+          volumeMounts:
+            {{- range .Values.helm_workload_e80385e9a33f511899e7bcf528dd6d66.volume_mounts }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+              subPath: {{ .subPath }}
+              readOnly: {{ .readOnly }}
+            {{- end }}
