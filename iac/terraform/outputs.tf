@@ -1,11 +1,23 @@
 
-output "aws_iam_role_workspace_role_name" {
-  value = module.appcd_5ee93cfe-4850-511c-b861-1b251097657a.name
+output "azurerm_user_assigned_managed_identity_restpie3_role_id" {
+  value = module.appcd_2d68328d-e774-4ea4-b154-a657585c74d4.id
   sensitive = false
 }
 
 
-output "aws_iam_role_workspace_role_arn" {
-  value = module.appcd_5ee93cfe-4850-511c-b861-1b251097657a.arn
+output "azurerm_user_assigned_managed_identity_restpie3_role_client_id" {
+  value = module.appcd_2d68328d-e774-4ea4-b154-a657585c74d4.client_id
+  sensitive = false
+}
+
+
+output "azurerm_user_assigned_managed_identity_restpie3_role_this" {
+  value = module.appcd_2d68328d-e774-4ea4-b154-a657585c74d4.this
+  sensitive = false
+}
+
+
+output "azurerm_user_assigned_managed_identity_restpie3_role_principal_id" {
+  value = module.appcd_2d68328d-e774-4ea4-b154-a657585c74d4.principal_id
   sensitive = false
 }

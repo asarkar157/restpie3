@@ -1,15 +1,12 @@
 {
   "module": {
-    "appcd_5ee93cfe-4850-511c-b861-1b251097657a": {
-      "assume_role_policy": "{\n\t\t\"Version\": \"2012-10-17\",\n\t\t\"Statement\":{\n\t\t\t\t\"Action\": \"sts:AssumeRole\",\n\t\t\t\t\"Effect\": \"Allow\",\n\t\t\t\t\"Principal\": {\n\t\t\t\t\t\"Service\": \"eks.amazonaws.com\"\n\t\t\t\t}\n\t\t\t}\n\t}",
-      "description": null,
-      "force_detach_policies": true,
-      "inline_policy": [],
+    "appcd_2d68328d-e774-4ea4-b154-a657585c74d4": {
+      "custom_role_definitions": [],
       "location": "${var.location}",
-      "name": "workspace-role",
+      "name": "restpie3-role",
       "resource_group_name": "${local.resource_group_name}",
-      "source": "./modules/aws_iam_role",
-      "tags": null
+      "role_assignments": [],
+      "source": "./modules/azurerm_user_assigned_managed_identity"
     }
   }
 }
