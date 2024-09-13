@@ -1,0 +1,25 @@
+{
+    "variable": {
+        "name": [
+            {
+                "description": "The name of azurerm user assigned identity",
+                "type": "string",
+                "nullable": false
+            }
+        ],
+        "role_assignments": [
+            {
+                "description": "The role assignments to assign to the user assigned identity",
+                "type": "list(object({ name: string, resource_type: string, deterministic_id: string,  built_in_role_name: string, scope: string }))",
+                "nullable": true
+            }
+        ],
+        "custom_role_definitions": [
+            {
+                "description": "The custom role definitions to assign to the user assigned identity",
+                "type": "list(object({ name: string, resource_type: string, deterministic_id: string, role_definition_name: string, scope: string, actions: list(string), not_actions: list(string), data_actions: list(string), not_data_actions: list(string)}))",
+                "nullable": true
+            }
+        ]
+    }
+}

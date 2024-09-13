@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.helm_service_bd7a127e66e85a509cbee5e39c6fb764.name   }}
+spec:
+  type: {{ .Values.helm_service_bd7a127e66e85a509cbee5e39c6fb764.type }}
+  ports:
+    - port: {{ .Values.helm_service_bd7a127e66e85a509cbee5e39c6fb764.port }}
+      targetPort: {{ .Values.helm_service_bd7a127e66e85a509cbee5e39c6fb764.target_port }}
+      protocol: {{.Values.helm_service_bd7a127e66e85a509cbee5e39c6fb764.protocol}}
+  {{- with .Values.helm_service_bd7a127e66e85a509cbee5e39c6fb764.selector_labels }}
+  selector:
+      {{- toYaml . | nindent 8 }}
+  {{- end }}

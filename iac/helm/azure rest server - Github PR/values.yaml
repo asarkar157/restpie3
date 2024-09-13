@@ -1,37 +1,37 @@
-helm_hpa_bfe3cdcb7dad5550a5b8bbe3048b1b45:
+helm_hpa_43a75e1797e251e18ce829a6138844dd:
     enabled: true
     max_replicas: 2
     min_replicas: 1
-    name: workspace
+    name: restpie3
     target_cpu_utilization_percentage: 50
     target_memory_utilization_percentage: 50
     workload_kind: Deployment
-    workload_name: workspace
-helm_ingress_6daa1655456f5d7a819f63eaf5b53df2:
+    workload_name: restpie3
+helm_ingress_f3c5c9f98b095f118d65d9edbfd9b282:
     annotations:
         kubernetes.io/ingress.allow-http: "false"
-    class_name: workspace
-    default_backend_name: workspace
+    class_name: restpie3
+    default_backend_name: restpie3
     default_backend_port: 80
     labels:
         service: myapp
-    name: workspace
+    name: restpie3
     rules: []
     tls: ""
-helm_service_a3067c6442e856f895aa9173c4e64266:
-    name: workspace
+helm_service_account_a885fa7580995dd38525635d12150012:
+    annotations: {}
+    automount: false
+    labels: {}
+    name: restpie3
+helm_service_bd7a127e66e85a509cbee5e39c6fb764:
+    name: restpie3
     port: 80
     protocol: TCP
     selector_labels:
         service: myapp
     target_port: 80
     type: ClusterIP
-helm_service_account_af69fe6c90ef537783ae99717891c83b:
-    annotations: {}
-    automount: false
-    labels: {}
-    name: workspace
-helm_workload_35df4b4a28a45fb78705226eed238678:
+helm_workload_e80385e9a33f511899e7bcf528dd6d66:
     env:
         ENVBUILDMODE: ""
         FLASK_ENV: ""
@@ -44,8 +44,10 @@ helm_workload_35df4b4a28a45fb78705226eed238678:
     kind: Deployment
     labels:
         service: myapp
-    name: workspace
+    name: restpie3
     port: 80
     protocol: TCP
     replicas: 1
-    service_account: workspace
+    service_account: restpie3
+    volume_mounts: []
+    volumes: []
