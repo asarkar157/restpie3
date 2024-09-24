@@ -10,6 +10,7 @@ import re
 from flask import request, session
 from passlib.context import CryptContext
 
+
 import logging
 log = logging.getLogger("account")
 
