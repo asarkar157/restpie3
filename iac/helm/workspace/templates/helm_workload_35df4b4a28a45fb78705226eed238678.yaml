@@ -26,6 +26,17 @@ spec:
       {{- end }}
       imagePullSecrets:
         - name: {{ .Values.helm_workload_35df4b4a28a45fb78705226eed238678.image_pull_secret }}
+      volumes:
+        {{- range .Values.helm_workload_35df4b4a28a45fb78705226eed238678.volumes }}
+        - name: {{ .name }}
+          {{- if .secret  }}
+          secret:
+            secretName: {{ .secret }}
+          {{ else if .configmap }}
+          configMap:
+            name: {{ .configmap }}
+          {{- end }}
+        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.helm_workload_35df4b4a28a45fb78705226eed238678.image }}:{{ .Values.helm_workload_35df4b4a28a45fb78705226eed238678.image_tag | default .Chart.AppVersion }}"
@@ -46,7 +57,14 @@ spec:
             - secretRef:
                 name: {{ . }}
             {{- end }}
-            {{- range .Values.helm_workload_35df4b4a28a45fb78705226eed238678.env_from_configmap }}
+            {{- range .Values.helm_workload_35df4b4a28a45fb78705226eed238678.env_from_config }}
             - configMapRef:
                 name: {{ . }}
+            {{- end }}
+          volumeMounts:
+            {{- range .Values.helm_workload_35df4b4a28a45fb78705226eed238678.volume_mounts }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+              subPath: {{ .subPath }}
+              readOnly: {{ .readOnly }}
             {{- end }}
