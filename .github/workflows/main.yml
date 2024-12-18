@@ -30,6 +30,7 @@ jobs:
         uses: appcd-dev/generate-action@v0
         env:
           STACKGEN_TOKEN: ${{ secrets.STACKGEN_TOKEN }}
+          APPCD_TOKEN: ${{ secrets.STACKGEN_TOKEN }}
         with:
           cloud: 'azure' # Specify the cloud provider
           language: 'Python' # Set the programming language
