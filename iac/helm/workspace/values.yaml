@@ -35,6 +35,7 @@ helm_workload_35df4b4a28a45fb78705226eed238678:
     env:
         ENVBUILDMODE: ""
         FLASK_ENV: ""
+        PYSRV_CONFIG_PATH: ""
     env_from_config: []
     env_from_secret: []
     image: ""
@@ -49,3 +50,5 @@ helm_workload_35df4b4a28a45fb78705226eed238678:
     protocol: TCP
     replicas: 1
     service_account: workspace
+    volume_mounts: []
+    volumes: []

@@ -1,3 +1,3 @@
 # README
-This is a readme file for IaC generated with appCD.
-You can modify your appStack -> [here](http://cloud.appcd.io/appstacks/cedd0014-0024-4242-8548-c6a64bfcb948)
+This is a readme file for IaC generated with StackGen.
+You can modify your appStack -> [here](http://cloud.stackgen.com/appstacks/531a2423-bbdb-4e89-a1be-96dd4e43fd4a)

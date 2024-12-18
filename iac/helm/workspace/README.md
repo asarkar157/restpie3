@@ -1,4 +1,4 @@
-# [appcd](appcd.io) generated IaC
+# [StackGen](stackgen.com) generated IaC
 
 Below are the instructions to get started with the generated IaC
 
