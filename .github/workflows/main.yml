@@ -27,9 +27,9 @@ jobs:
           persist-credentials: true
           
       - name: Generate IaC
-        uses: appcd-dev/action@v0
+        uses: appcd-dev/generate-action@v0
         env:
-          APPCD_TOKEN: ${{ secrets.APPCD_TOKEN }}
+          STACKGEN_TOKEN: ${{ secrets.STACKGEN_TOKEN }}
         with:
           cloud: 'azure' # Specify the cloud provider
           language: 'Python' # Set the programming language
