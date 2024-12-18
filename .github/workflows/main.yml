@@ -1,4 +1,4 @@
-name: AppCD IaC Generator
+name: StackGen IaC Generator
 
 on:
   push:
@@ -14,7 +14,7 @@ on:
   workflow_dispatch:  # Allows manual trigger of the workflow
 
 jobs:
-  AppCD:
+  StackGen:
     # Skip the job for PRs from branches starting with stackgen/
     if: github.event_name != 'pull_request' || !startsWith(github.head_ref, 'stackgen/')
     runs-on: ubuntu-20.04
