@@ -13,7 +13,7 @@ Update Sep 2020: Run in Raspberry with an SQLite database.
 
 Update May 2023: Python and libraries updated, Python 3.11 into use. Still a fine foundation for a new project - the architecture does not age, and simple outlives complex.
 
-Update March 2024: Ansible scripts for automatic install to cloud. 
+Update March 2024: Ansible scripts for automatic install to cloud.
 
 **Table of contents**
 
