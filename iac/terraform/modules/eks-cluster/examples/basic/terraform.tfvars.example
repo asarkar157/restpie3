@@ -1,0 +1,30 @@
+# Example terraform.tfvars file for basic EKS cluster
+
+# AWS Configuration
+aws_region = "us-west-2"
+
+# Cluster Configuration
+cluster_name       = "my-eks-cluster"
+kubernetes_version = "1.28"
+environment        = "dev"
+project_name       = "my-project"
+
+# VPC Configuration
+create_vpc = true
+# vpc_name = "existing-vpc-name"  # Only used when create_vpc = false
+
+# API Endpoint Configuration
+endpoint_private_access = false
+endpoint_public_access  = true
+public_access_cidrs     = ["0.0.0.0/0"]  # Restrict this in production
+
+# Node Group Configuration
+node_instance_types = ["t3.medium"]
+node_capacity_type  = "ON_DEMAND"  # or "SPOT"
+node_disk_size      = 20
+node_desired_size   = 2
+node_max_size       = 4
+node_min_size       = 1
+
+# SSH Access (optional)
+# key_name = "my-key-pair"
